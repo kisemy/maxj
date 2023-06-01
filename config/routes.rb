@@ -1,5 +1,31 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
+
+#devise_for :users,
+  #:skip => [:registrations, :sessions]
+
+#as user do
+  # Registrations
+  #get   '/signup'   => 'users/registrations#new', as: :new_user_registration
+  #post  '/signup'   => 'users/registrations#create', as: :user_registration
+#end
+
+
+
+
+  resources :receipt_lines
+  resources :receipts
+  resources :paymentlines
+  resources :payments
+  resources :items
+  resources :cashes
+  resources :banks
+  resources :accharts
+  resources :invoice_lines
+  resources :invoices
+  resources :customers
 # You can have the root of your site routed with "root"
   root to: 'dashboards#dashboard_1'
 
@@ -140,5 +166,10 @@ Rails.application.routes.draw do
   get "cssanimations/index"
 
   get "landing/index"
+
+
+# routes for adding fields dynamically
+  get '/add_field', to: 'invoices#add_field', as: 'add_field'
+  post '/add_field', to: 'invoices#add_field'
 
 end
